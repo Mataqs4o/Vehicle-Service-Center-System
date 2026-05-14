@@ -13,6 +13,25 @@
     <div class="alert alert-success">@TempData["Success"]</div>
 }
 @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+
+@if (Model.PriceEstimates.Any())
+{
+    <div class="card mb-3">
+        <div class="card-header">Approximate prices from booked repairs</div>
+        <div class="card-body p-0">
+            <table class="table mb-0">
+                <thead><tr><th>Repair Type</th><th>Approx. Price</th></tr></thead>
+                <tbody>
+                @foreach (var estimate in Model.PriceEstimates)
+                {
+                    <tr><td>@estimate.RepairType</td><td>@estimate.ApproximatePrice.ToString("C")</td></tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
 <form asp-action="Create" method="post" class="row g-3">
     <div class="col-md-4">
         <label asp-for="VehicleId" class="form-label"></label>

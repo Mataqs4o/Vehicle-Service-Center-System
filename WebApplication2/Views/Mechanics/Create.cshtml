@@ -1,0 +1,18 @@
+@model WebApplication2.ViewModels.MechanicSignupViewModel
+@{
+    ViewData["Title"] = "Mechanic Sign Up";
+}
+
+<h2>Become a Mechanic</h2>
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+<form asp-action="Create" method="post" class="row g-3">
+    <div class="col-md-4"><label asp-for="FirstName" class="form-label"></label><input asp-for="FirstName" class="form-control" /><span asp-validation-for="FirstName" class="text-danger"></span></div>
+    <div class="col-md-4"><label asp-for="LastName" class="form-label"></label><input asp-for="LastName" class="form-control" /><span asp-validation-for="LastName" class="text-danger"></span></div>
+    <div class="col-md-4"><label asp-for="Specialization" class="form-label"></label><input asp-for="Specialization" class="form-control" /><span asp-validation-for="Specialization" class="text-danger"></span></div>
+    <div class="col-12"><button class="btn btn-primary" type="submit">Register Mechanic</button></div>
+</form>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

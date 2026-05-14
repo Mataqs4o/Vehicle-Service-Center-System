@@ -17,4 +17,6 @@ public class ServiceRecord
 
     [Range(0.01, 100000)]
     public decimal Cost { get; set; }
+
+    public bool IsPublic { get; set; } = true;
 }

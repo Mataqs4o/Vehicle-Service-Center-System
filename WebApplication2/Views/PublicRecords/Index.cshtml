@@ -1,0 +1,33 @@
+@model IReadOnlyList<WebApplication2.ViewModels.PublicServiceRecordViewModel>
+@{
+    ViewData["Title"] = "Public Service Records";
+}
+
+<h2>Public Service Records</h2>
+<p class="text-muted">Updates in real time when a public booking is made.</p>
+<table class="table table-striped" id="recordsTable">
+    <thead><tr><th>ID</th><th>Vehicle</th><th>Date</th><th>Repair</th><th>Approx. Price</th></tr></thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr><td>@item.ServiceRecordId</td><td>@item.VehicleLabel</td><td>@item.Date.ToString("yyyy-MM-dd")</td><td>@item.Description</td><td>@item.Cost.ToString("C")</td></tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+<script>
+const tbody = document.querySelector('#recordsTable tbody');
+function renderRows(records){
+  tbody.innerHTML = records.map(r => `<tr><td>${r.serviceRecordId}</td><td>${r.vehicleLabel}</td><td>${new Date(r.date).toISOString().slice(0,10)}</td><td>${r.description}</td><td>${new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(r.cost)}</td></tr>`).join('');
+}
+async function refresh(){
+  const res = await fetch('@Url.Action("Latest", "PublicRecords")');
+  renderRows(await res.json());
+}
+const connection = new signalR.HubConnectionBuilder().withUrl('/hubs/public-records').build();
+connection.on('PublicRecordAdded', refresh);
+connection.start().catch(console.error);
+</script>
+}

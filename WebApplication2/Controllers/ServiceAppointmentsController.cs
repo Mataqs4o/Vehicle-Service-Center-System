@@ -15,7 +15,8 @@ public class ServiceAppointmentsController(IServiceRecordService serviceRecordSe
     {
         var model = new ServiceAppointmentViewModel
         {
-            AvailableVehicles = await GetVehicleOptionsAsync()
+            AvailableVehicles = await GetVehicleOptionsAsync(),
+            PriceEstimates = await serviceRecordService.GetPriceEstimatesAsync()
         };
 
         return View(model);
@@ -25,6 +26,7 @@ public class ServiceAppointmentsController(IServiceRecordService serviceRecordSe
     public async Task<IActionResult> Create(ServiceAppointmentViewModel model)
     {
         model.AvailableVehicles = await GetVehicleOptionsAsync();
+        model.PriceEstimates = await serviceRecordService.GetPriceEstimatesAsync();
         if (!ModelState.IsValid) return View(model);
 
         var vehicleExists = await dbContext.Vehicles.AnyAsync(v => v.VehicleId == model.VehicleId);
