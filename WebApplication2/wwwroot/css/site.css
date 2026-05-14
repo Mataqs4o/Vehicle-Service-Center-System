@@ -19,6 +19,7 @@ html {
 
 body {
   margin-bottom: 60px;
+  background: linear-gradient(180deg, #f2f7ff 0%, #ffffff 45%);
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,4 +29,32 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+.landing-hero {
+  background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+}
+
+.feature-card {
+  background: #ffffff;
+  box-shadow: 0 8px 30px rgba(13, 110, 253, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(13, 110, 253, 0.2);
+}
+
+.hero-card {
+  background: linear-gradient(135deg, #212529 0%, #495057 100%);
+}
+
+.floating-car {
+  animation: floatY 4s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }

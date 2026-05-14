@@ -3,15 +3,22 @@
     ViewData["Title"] = "Book Service Appointment";
 }
 
-<h2>Book Service Appointment</h2>
+<section class="hero-card mb-4 p-4 p-md-5 rounded-4 text-white">
+    <h2 class="display-6 fw-bold">Book Service Appointment</h2>
+    <p class="mb-0">Choose your vehicle, preferred date, and service details. We'll handle the rest.</p>
+</section>
+
 @if (TempData["Success"] != null)
 {
     <div class="alert alert-success">@TempData["Success"]</div>
 }
+@Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
 <form asp-action="Create" method="post" class="row g-3">
     <div class="col-md-4">
         <label asp-for="VehicleId" class="form-label"></label>
-        <input asp-for="VehicleId" class="form-control" />
+        <select asp-for="VehicleId" asp-items="Model.AvailableVehicles" class="form-select">
+            <option value="">Select your vehicle</option>
+        </select>
         <span asp-validation-for="VehicleId" class="text-danger"></span>
     </div>
     <div class="col-md-4">
@@ -30,7 +37,7 @@
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="col-12">
-        <button class="btn btn-primary" type="submit">Book Appointment</button>
+        <button class="btn btn-primary btn-lg px-4" type="submit">Book Appointment</button>
     </div>
 </form>
 

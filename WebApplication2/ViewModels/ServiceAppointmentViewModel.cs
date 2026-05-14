@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication2.Validation;
 
 namespace WebApplication2.ViewModels;
@@ -16,4 +17,6 @@ public class ServiceAppointmentViewModel
 
     [Range(0.01, 100000)]
     public decimal EstimatedCost { get; set; }
+
+    public List<SelectListItem> AvailableVehicles { get; set; } = [];
 }
