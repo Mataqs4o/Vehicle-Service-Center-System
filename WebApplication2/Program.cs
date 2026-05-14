@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Data;
+using WebApplication2.Hubs;
 using WebApplication2.Mapping;
 using WebApplication2.Models;
 using WebApplication2.Repositories;
@@ -14,7 +15,8 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllersWithViews();
-        builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("VehicleServiceCenterDb"));
+        builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=vehicle-service-center.db"));
+        builder.Services.AddSignalR();
         builder.Services.AddAutoMapper(typeof(MappingProfile));
 
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -43,10 +45,18 @@ public class Program
         app.UseAuthorization();
 
         app.MapStaticAssets();
+        app.MapHub<PublicRecordsHub>("/hubs/public-records");
+
         app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
             .WithStaticAssets();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            db.Database.EnsureCreated();
+        }
 
         SeedDemoData(app);
 

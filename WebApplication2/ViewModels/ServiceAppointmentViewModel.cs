@@ -19,4 +19,5 @@ public class ServiceAppointmentViewModel
     public decimal EstimatedCost { get; set; }
 
     public List<SelectListItem> AvailableVehicles { get; set; } = [];
+    public IReadOnlyList<ServicePriceEstimateViewModel> PriceEstimates { get; set; } = [];
 }
