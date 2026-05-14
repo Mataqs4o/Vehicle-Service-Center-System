@@ -15,7 +15,7 @@
     </div>
 </section>
 
-<section class="row g-4 text-center">
+<section class="row g-4 text-center mb-4">
     <div class="col-md-4">
         <div class="feature-card h-100 p-4 rounded-4">
             <h3>Quick Booking</h3>
@@ -32,6 +32,74 @@
         <div class="feature-card h-100 p-4 rounded-4">
             <h3>Service History</h3>
             <p>Keep a clean and organized maintenance timeline for every vehicle.</p>
+        </div>
+    </div>
+</section>
+
+<section class="card shadow-sm border-0 rounded-4">
+    <div class="card-body p-4">
+        <h2 class="h4 mb-3">Service Center Tabs</h2>
+
+        <ul class="nav nav-tabs" id="serviceCenterTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="mechanic-ids-tab" data-bs-toggle="tab" data-bs-target="#mechanic-ids" type="button" role="tab" aria-controls="mechanic-ids" aria-selected="true">Mechanic IDs</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="service-records-tab" data-bs-toggle="tab" data-bs-target="#service-records" type="button" role="tab" aria-controls="service-records" aria-selected="false">Service Records</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="public-info-tab" data-bs-toggle="tab" data-bs-target="#public-info" type="button" role="tab" aria-controls="public-info" aria-selected="false">Public Info</button>
+            </li>
+        </ul>
+
+        <div class="tab-content pt-3" id="serviceCenterTabsContent">
+            <div class="tab-pane fade show active" id="mechanic-ids" role="tabpanel" aria-labelledby="mechanic-ids-tab" tabindex="0">
+                <p class="mb-2">Current on-shift mechanic IDs:</p>
+                <ul class="mb-0">
+                    <li>MEC-1023</li>
+                    <li>MEC-1058</li>
+                    <li>MEC-1114</li>
+                </ul>
+            </div>
+
+            <div class="tab-pane fade" id="service-records" role="tabpanel" aria-labelledby="service-records-tab" tabindex="0">
+                <p class="mb-2">Recent service records:</p>
+                <div class="table-responsive">
+                    <table class="table table-sm align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Record #</th>
+                                <th>Vehicle</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SR-4301</td>
+                                <td>2021 Toyota Camry</td>
+                                <td>Oil Change</td>
+                                <td><span class="badge bg-success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>SR-4302</td>
+                                <td>2020 Honda CR-V</td>
+                                <td>Brake Inspection</td>
+                                <td><span class="badge bg-warning text-dark">In Progress</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="public-info" role="tabpanel" aria-labelledby="public-info-tab" tabindex="0">
+                <p class="mb-2">Public updates:</p>
+                <ul class="mb-0">
+                    <li>Open Monday–Saturday, 8:00 AM–6:00 PM.</li>
+                    <li>Walk-in diagnostics available from 10:00 AM–2:00 PM.</li>
+                    <li>Seasonal tire checks available through June 30.</li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
