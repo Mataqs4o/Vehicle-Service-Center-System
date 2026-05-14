@@ -13,6 +13,16 @@ ASP.NET Core MVC application for managing customer vehicles, mechanics, and serv
 - Unit tests for repository and service layers.
 
 ## Setup
+
+### Option A: Run with Docker (no local .NET SDK required)
+1. Install Docker Desktop (or Docker Engine).
+2. Build and run:
+   ```bash
+   docker compose up --build
+   ```
+3. Open the app at `http://localhost:8080`.
+
+### Option B: Run with local .NET SDK
 1. Install .NET 9 SDK.
 2. Restore packages:
    ```bash
@@ -36,4 +46,4 @@ ASP.NET Core MVC application for managing customer vehicles, mechanics, and serv
 - `ServiceRecordServiceTests.BookAppointmentAsync_AddsRecordAndSendsEmail`
 - `GenericRepositoryTests.AddAsync_PersistsCustomer`
 
-> In this environment, `dotnet` may be unavailable, so execute tests on a machine with the .NET 9 SDK installed.
+> If you use Docker, the SDK is only used inside the build container, so you do not need to install it locally.
